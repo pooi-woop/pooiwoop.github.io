@@ -1,0 +1,461 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>260331笔记 | 皖月清风的个人博客</title><meta name="author" content="皖月清风"><meta name="copyright" content="皖月清风"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="线程池一、什么是线程池？线程池 &#x3D; 提前创建好的一堆线程 + 任务队列 + 调度器 你可以把它理解成：  一个固定人数的“工人小组”，专门等着处理你丢过来的“任务”。   不用每次来任务都新招工人（创建线程） 任务做完工人不辞退（不销毁线程） 工人闲着就等着，来任务马上干活 任务太多排排队，不会一下子把系统压垮  这就是线程池。  二、为什么要用线程池？（核心作用）如果不用线程池，你每次">
+<meta property="og:type" content="article">
+<meta property="og:title" content="260331笔记">
+<meta property="og:url" content="https://pooiwoop-github-io.pages.dev/2026/03/31/260331%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="皖月清风的个人博客">
+<meta property="og:description" content="线程池一、什么是线程池？线程池 &#x3D; 提前创建好的一堆线程 + 任务队列 + 调度器 你可以把它理解成：  一个固定人数的“工人小组”，专门等着处理你丢过来的“任务”。   不用每次来任务都新招工人（创建线程） 任务做完工人不辞退（不销毁线程） 工人闲着就等着，来任务马上干活 任务太多排排队，不会一下子把系统压垮  这就是线程池。  二、为什么要用线程池？（核心作用）如果不用线程池，你每次">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pooiwoop-github-io.pages.dev/img/2026/20260323-180427.012-6.jpg">
+<meta property="article:published_time" content="2026-03-31T14:25:18.000Z">
+<meta property="article:modified_time" content="2026-03-31T14:25:18.714Z">
+<meta property="article:author" content="皖月清风">
+<meta property="article:tag" content="皖月清风, Pooiwoop, 个人博客, 技术博客, 博客,三角洲行动,go,vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pooiwoop-github-io.pages.dev/img/2026/20260323-180427.012-6.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "260331笔记",
+  "url": "https://pooiwoop-github-io.pages.dev/2026/03/31/260331%E7%AC%94%E8%AE%B0/",
+  "image": "https://pooiwoop-github-io.pages.dev/img/2026/20260323-180427.012-6.jpg",
+  "datePublished": "2026-03-31T14:25:18.000Z",
+  "dateModified": "2026-03-31T14:25:18.714Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "皖月清风",
+      "url": "https://pooiwoop-github-io.pages.dev"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://pooiwoop-github-io.pages.dev/2026/03/31/260331%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdnjs.cloudflare.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdnjs.cloudflare.com/ajax/libs/egjs-infinitegrid/4.13.0/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '260331笔记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><style>
+/* 首页标题样式 */
+.index-info .site-title {
+  font-size: 3rem;
+  opacity: 0.5;
+}
+</style>
+<meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/2026/20260323-180427.012-16.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/2026/20260323-180427.012-6.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">皖月清风的个人博客</span></a><a class="nav-page-title" href="/"><span class="site-name">260331笔记</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">260331笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-31T14:25:18.000Z" title="发表于 2026-03-31 22:25:18">2026-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-31T14:25:18.714Z" title="更新于 2026-03-31 22:25:18">2026-03-31</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><h2 id="一、什么是线程池？"><a href="#一、什么是线程池？" class="headerlink" title="一、什么是线程池？"></a>一、什么是线程池？</h2><p><strong>线程池 &#x3D; 提前创建好的一堆线程 + 任务队列 + 调度器</strong></p>
+<p>你可以把它理解成：</p>
+<blockquote>
+<p><strong>一个固定人数的“工人小组”</strong>，专门等着处理你丢过来的“任务”。</p>
+</blockquote>
+<ul>
+<li>不用每次来任务都<strong>新招工人</strong>（创建线程）</li>
+<li>任务做完工人<strong>不辞退</strong>（不销毁线程）</li>
+<li>工人闲着就等着，来任务马上干活</li>
+<li>任务太多排排队，不会一下子把系统压垮</li>
+</ul>
+<p>这就是<strong>线程池</strong>。</p>
+<hr>
+<h2 id="二、为什么要用线程池？（核心作用）"><a href="#二、为什么要用线程池？（核心作用）" class="headerlink" title="二、为什么要用线程池？（核心作用）"></a>二、为什么要用线程池？（核心作用）</h2><p>如果不用线程池，你每次处理任务都 <strong>new Thread()</strong>，会有 3 个致命问题：</p>
+<h3 id="1-频繁创建-销毁线程-→-非常耗性能"><a href="#1-频繁创建-销毁线程-→-非常耗性能" class="headerlink" title="1. 频繁创建&#x2F;销毁线程 → 非常耗性能"></a>1. 频繁创建&#x2F;销毁线程 → 非常耗性能</h3><p>创建线程、销毁线程是<strong>重量级操作</strong>，比执行普通代码慢得多。<br>线程池让线程<strong>复用</strong>，避免反复创建销毁。</p>
+<h3 id="2-无限制创建线程-→-系统崩溃"><a href="#2-无限制创建线程-→-系统崩溃" class="headerlink" title="2. 无限制创建线程 → 系统崩溃"></a>2. 无限制创建线程 → 系统崩溃</h3><p>如果你来了 1000 个任务，就开 1000 个线程：</p>
+<ul>
+<li>CPU 疯狂切换</li>
+<li>内存爆掉</li>
+<li>程序直接卡死</li>
+</ul>
+<p>线程池可以<strong>限制最大线程数量</strong>，保证系统稳定。</p>
+<h3 id="3-线程管理混乱"><a href="#3-线程管理混乱" class="headerlink" title="3. 线程管理混乱"></a>3. 线程管理混乱</h3><p>手动创建线程很难统一管理：</p>
+<ul>
+<li>怎么控制并发数？</li>
+<li>怎么拒绝过载任务？</li>
+<li>怎么监控任务状态？</li>
+</ul>
+<p>线程池自带<strong>管理、监控、拒绝策略、定时任务</strong>等功能。</p>
+<hr>
+<h2 id="三、线程池的核心好处（总结版）"><a href="#三、线程池的核心好处（总结版）" class="headerlink" title="三、线程池的核心好处（总结版）"></a>三、线程池的核心好处（总结版）</h2><ol>
+<li><strong>降低资源消耗</strong>：复用线程，不反复创建销毁</li>
+<li><strong>提高响应速度</strong>：任务来了，直接用空闲线程，不用等创建</li>
+<li><strong>控制并发数量</strong>：防止线程太多把系统压崩</li>
+<li><strong>统一管理线程</strong>：可监控、可定时、可拒绝、可优化</li>
+</ol>
+<p>一句话：<br><strong>线程池让多线程变得高效、安全、可控。</strong></p>
+<hr>
+<h2 id="四、生活类比（最容易懂）"><a href="#四、生活类比（最容易懂）" class="headerlink" title="四、生活类比（最容易懂）"></a>四、生活类比（最容易懂）</h2><ul>
+<li><strong>不用线程池</strong>：来一个客人，招一个服务员；客人走了，辞退服务员。</li>
+<li><strong>用线程池</strong>：提前招 5 个服务员站着等；来客人马上服务；客人走了继续等下一个；客人太多就排队。</li>
+</ul>
+<p>是不是一下就明白了？</p>
+<hr>
+<h2 id="五、Java-里最常见的线程池（简单提一下）"><a href="#五、Java-里最常见的线程池（简单提一下）" class="headerlink" title="五、Java 里最常见的线程池（简单提一下）"></a>五、Java 里最常见的线程池（简单提一下）</h2><p>Java 内置好的线程池，直接用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Executors.newFixedThreadPool(<span class="number">5</span>); <span class="comment">// 固定大小线程池</span></span><br><span class="line">Executors.newCachedThreadPool(); <span class="comment">// 自动扩容</span></span><br><span class="line">Executors.newSingleThreadExecutor(); <span class="comment">// 单线程</span></span><br><span class="line">Executors.newScheduledThreadPool(<span class="number">3</span>); <span class="comment">// 定时任务</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>线程池</strong>：预先创建的线程集合，负责复用线程执行任务。</li>
+<li><strong>作用</strong>：<strong>省资源、提速度、控并发、好管理</strong>。</li>
+<li><strong>本质</strong>：用空间换时间，用管理换稳定。</li>
+</ul>
+<p>在 Go 里其实<strong>没有传统意义上的线程池</strong>，因为 Go 自带了<strong>GMP 调度器 + goroutine（轻量级线程）</strong>，goroutine 极轻，一般直接 <code>go func()</code> 就行。</p>
+<p>但<strong>面试&#x2F;工程里依然常考“Go 实现线程池”</strong>，本质是：<strong>控制同时运行的 goroutine 数量</strong>，防止瞬间爆几十万 goroutine 把内存&#x2F;CPU 打满。</p>
+<p>下面给你一个<strong>最标准、最常用的 Go 协程池（线程池）实现</strong>。</p>
+<hr>
+<h1 id="五、Go-线程池"><a href="#五、Go-线程池" class="headerlink" title="五、Go 线程池"></a>五、Go 线程池</h1><p>在 Go 里其实没有传统意义上的线程池，因为 Go 自带了GMP 调度器 + goroutine（轻量级线程），goroutine 极轻，一般直接 go func() 就行。<br>但面试 &#x2F; 工程里依然常考 “Go 实现线程池”，本质是：控制同时运行的 goroutine 数量，防止瞬间爆几十万 goroutine 把内存 &#x2F; CPU 打满。<br>下面给你一个最标准、最常用的 Go 协程池（线程池）实现。</p>
+<h2 id="1-用-channel-实现简易协程池"><a href="#1-用-channel-实现简易协程池" class="headerlink" title="1. 用 channel 实现简易协程池"></a>1. 用 channel 实现简易协程池</h2><p>思路：</p>
+<ul>
+<li>用一个带缓冲的 channel 当作“池”</li>
+<li>缓冲大小 &#x3D; 最大并发数</li>
+<li>任务来了先占一个槽位，执行完释放</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 线程池（协程池）执行任务</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">worker</span><span class="params">(id <span class="type">int</span>, jobs &lt;-<span class="keyword">chan</span> <span class="type">int</span>, results <span class="keyword">chan</span>&lt;- <span class="type">string</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 不断从任务队列取任务</span></span><br><span class="line">	<span class="keyword">for</span> job := <span class="keyword">range</span> jobs &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;worker %d 开始执行任务 %d\n&quot;</span>, id, job)</span><br><span class="line">		<span class="comment">// 模拟业务耗时</span></span><br><span class="line">		time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">		results &lt;- fmt.Sprintf(<span class="string">&quot;任务 %d 完成&quot;</span>, job)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 任务数量</span></span><br><span class="line">	<span class="keyword">const</span> jobCount = <span class="number">50</span></span><br><span class="line">	<span class="comment">// 最大并发协程数（线程池大小）</span></span><br><span class="line">	<span class="keyword">const</span> workerCount = <span class="number">5</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 任务队列</span></span><br><span class="line">	jobs := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>, jobCount)</span><br><span class="line">	<span class="comment">// 结果队列</span></span><br><span class="line">	results := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">string</span>, jobCount)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 启动固定数量的 worker（协程池）</span></span><br><span class="line">	<span class="keyword">for</span> w := <span class="number">1</span>; w &lt;= workerCount; w++ &#123;</span><br><span class="line">		<span class="keyword">go</span> worker(w, jobs, results)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 投递任务</span></span><br><span class="line">	<span class="keyword">for</span> j := <span class="number">1</span>; j &lt;= jobCount; j++ &#123;</span><br><span class="line">		jobs &lt;- j</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">close</span>(jobs) <span class="comment">// 关闭任务通道，表示没有新任务</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 收集结果</span></span><br><span class="line">	<span class="keyword">for</span> a := <span class="number">1</span>; a &lt;= jobCount; a++ &#123;</span><br><span class="line">		fmt.Println(&lt;-results)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">close</span>(results)</span><br><span class="line">	fmt.Println(<span class="string">&quot;所有任务执行完毕&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><ul>
+<li>同时<strong>最多只有 5 个 goroutine 在跑</strong></li>
+<li>任务排队执行，不会暴增并发</li>
+<li>这就是 Go 版<strong>线程池&#x2F;协程池</strong></li>
+</ul>
+<hr>
+<h2 id="2-更常用的简化版：用-semaphore-风格（控制并发）"><a href="#2-更常用的简化版：用-semaphore-风格（控制并发）" class="headerlink" title="2. 更常用的简化版：用 semaphore 风格（控制并发）"></a>2. 更常用的简化版：用 semaphore 风格（控制并发）</h2><p>实际项目里经常这么写，更简洁：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">	<span class="comment">// 线程池大小：最多 5 个并发</span></span><br><span class="line">	pool := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 100 个任务</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++ &#123;</span><br><span class="line">		<span class="comment">// 占一个槽位</span></span><br><span class="line">		pool &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">		wg.Add(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(idx <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">			<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">				<span class="comment">// 释放槽位</span></span><br><span class="line">				&lt;-pool</span><br><span class="line">				wg.Done()</span><br><span class="line">			&#125;()</span><br><span class="line"></span><br><span class="line">			fmt.Printf(<span class="string">&quot;执行任务 %d\n&quot;</span>, idx)</span><br><span class="line">			time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">		&#125;(i)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	wg.Wait()</span><br><span class="line">	fmt.Println(<span class="string">&quot;全部完成&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>pool := make(chan struct{}, 5)</code> 就是<strong>线程池</strong></li>
+<li>控制同时运行的 goroutine 不超过 5</li>
+<li>简单、高效、Go 标准写法</li>
+</ul>
+<hr>
+<h2 id="3-为什么-Go-很少提“线程池”？"><a href="#3-为什么-Go-很少提“线程池”？" class="headerlink" title="3. 为什么 Go 很少提“线程池”？"></a>3. 为什么 Go 很少提“线程池”？</h2><ul>
+<li>Java&#x2F;C++ 线程重，必须池化复用</li>
+<li>Go 的 <strong>goroutine 是轻量级协程（KB 级）</strong>，可以轻松开几万个</li>
+<li>Go  runtime 自己调度，不用你管理“线程复用”</li>
+</ul>
+<p>但<strong>依然需要协程池</strong>的场景：</p>
+<ul>
+<li>爬虫&#x2F;大量 IO 请求（防止瞬间打崩目标网站）</li>
+<li>数据库连接有限（控制并发 SQL）</li>
+<li>避免无限制创建 goroutine 导致 OOM</li>
+</ul>
+<hr>
+<h2 id="一句话总结"><a href="#一句话总结" class="headerlink" title="一句话总结"></a>一句话总结</h2><ul>
+<li>Go 没有 JVM 那种线程池，但可以用 <strong>channel + goroutine</strong> 实现<strong>协程池</strong></li>
+<li>作用：<strong>限制并发数量、保护系统资源、稳定可控</strong></li>
+<li>标准写法：<strong>带缓冲 channel 当作令牌桶</strong></li>
+</ul>
+<h1 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h1><p>HashMap底层采用数组+链表&#x2F;红黑树结构，通过哈希算法确定元素存储位置。默认初始容量16，负载因子0.75，当元素数量超过（容量×负载因子）时触发扩容。扩容时创建双倍容量新数组，通过高位运算重新计算节点位置（JDK8优化为无需重新hash），原数据通过尾插法迁移到新数组。链表长度超过8且数组长度≥64时会转为红黑树，提升查询效率。</p>
+<h1 id="Redis-Bitmaps（位图）"><a href="#Redis-Bitmaps（位图）" class="headerlink" title="Redis Bitmaps（位图）"></a>Redis Bitmaps（位图）</h1><p>是基于 <strong>String 类型</strong> 实现的位级操作方案，用 1bit 存 0&#x2F;1 表示二值状态，<strong>空间极省、读写极快</strong>。</p>
+<hr>
+<h3 id="一、核心原理"><a href="#一、核心原理" class="headerlink" title="一、核心原理"></a>一、核心原理</h3><ul>
+<li><strong>本质</strong>：不是独立数据类型，是对 String（SDS）的位操作封装。</li>
+<li><strong>存储</strong>：每个 bit 存 0&#x2F;1，offset 从 0 开始；最大支持 <strong>2³²−1 位（≈42.9 亿）</strong>，对应 512MB。</li>
+<li><strong>定位规则</strong>：<ul>
+<li>字节位置 &#x3D; offset &#x2F; 8</li>
+<li>位位置 &#x3D; 7 − (offset % 8)</li>
+</ul>
+</li>
+<li><strong>优势</strong>：<ul>
+<li>空间效率极高：1 亿用户状态仅需 <strong>12.5MB</strong>（1e8 &#x2F; 8）。</li>
+<li>原子操作、O(1) 读写，适合海量二值统计。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="二、常用命令"><a href="#二、常用命令" class="headerlink" title="二、常用命令"></a>二、常用命令</h3><h4 id="1-基础操作"><a href="#1-基础操作" class="headerlink" title="1. 基础操作"></a>1. 基础操作</h4><ul>
+<li><strong>SETBIT key offset value</strong><br>设置第 offset 位为 0&#x2F;1，返回旧值。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SETBIT user:sign:1001 5 1  <span class="comment"># 用户1001第5天签到</span></span><br></pre></td></tr></table></figure></li>
+<li><strong>GETBIT key offset</strong><br>获取第 offset 位的值（0&#x2F;1）。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GETBIT user:sign:1001 5  <span class="comment"># 1</span></span><br></pre></td></tr></table></figure></li>
+<li><strong>BITCOUNT key [start end] [BIT]</strong><br>统计值为 1 的位数；默认按字节，加 BIT 按位。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BITCOUNT user:sign:1001        <span class="comment"># 总签到天数</span></span><br><span class="line">BITCOUNT user:sign:1001 0 2 BIT  <span class="comment"># 0-2位中1的个数</span></span><br></pre></td></tr></table></figure></li>
+<li><strong>BITPOS key value [start end]</strong><br>查找第一个值为 value（0&#x2F;1）的 offset。</li>
+</ul>
+<h4 id="2-位运算（BITOP）"><a href="#2-位运算（BITOP）" class="headerlink" title="2. 位运算（BITOP）"></a>2. 位运算（BITOP）</h4><p>对多个 Bitmap 做 AND&#x2F;OR&#x2F;XOR&#x2F;NOT，结果存到新 key。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3天均活跃的用户（AND）</span></span><br><span class="line">BITOP AND active:3days active:20260329 active:20260330 active:20260331</span><br><span class="line">BITCOUNT active:3days</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-位段操作（BITFIELD）"><a href="#3-位段操作（BITFIELD）" class="headerlink" title="3. 位段操作（BITFIELD）"></a>3. 位段操作（BITFIELD）</h4><p>批量读写指定位宽的整数，适合复杂位存储。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从offset 0开始取4位，转为无符号整数</span></span><br><span class="line">BITFIELD user:status GET u4 0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="三、典型应用场景"><a href="#三、典型应用场景" class="headerlink" title="三、典型应用场景"></a>三、典型应用场景</h3><h4 id="1-用户签到-活跃统计"><a href="#1-用户签到-活跃统计" class="headerlink" title="1. 用户签到&#x2F;活跃统计"></a>1. 用户签到&#x2F;活跃统计</h4><ul>
+<li>按用户：<code>user:sign:{uid}</code>，offset&#x3D;日期，1&#x3D;签到。</li>
+<li>按日期：<code>active:{date}</code>，offset&#x3D;uid，1&#x3D;活跃。</li>
+<li>统计：<ul>
+<li>总签到：<code>BITCOUNT user:sign:1001</code></li>
+<li>连续3天活跃：<code>BITOP AND ...</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="2-权限-状态标记"><a href="#2-权限-状态标记" class="headerlink" title="2. 权限&#x2F;状态标记"></a>2. 权限&#x2F;状态标记</h4><ul>
+<li>一个 key 存多状态：offset 0&#x3D;绑定手机、1&#x3D;会员、2&#x3D;通知开关。</li>
+<li>示例：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SETBIT user:status:1001 0 1  <span class="comment"># 已绑手机</span></span><br><span class="line">SETBIT user:status:1001 1 1  <span class="comment"># 是会员</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-去重-计数"><a href="#3-去重-计数" class="headerlink" title="3. 去重&#x2F;计数"></a>3. 去重&#x2F;计数</h4><ul>
+<li>日活、周活、月活：用 OR 合并多天 Bitmap，再 BITCOUNT。</li>
+<li>布隆过滤器（Bloom Filter）底层常用 Bitmaps 实现。</li>
+</ul>
+<hr>
+<h3 id="四、内存计算"><a href="#四、内存计算" class="headerlink" title="四、内存计算"></a>四、内存计算</h3><ul>
+<li>1 个 offset 占 1bit。</li>
+<li>公式：<strong>内存(字节) &#x3D; (最大offset + 1) &#x2F; 8</strong>。</li>
+<li>示例：4 亿用户 → (4e8 + 1)&#x2F;8 ≈ <strong>50MB</strong>。</li>
+</ul>
+<hr>
+<h3 id="五、注意事项"><a href="#五、注意事项" class="headerlink" title="五、注意事项"></a>五、注意事项</h3><ul>
+<li>offset 从 0 开始，最大 <strong>2³²−1</strong>。</li>
+<li>跨字节操作自动扩容，会占用内存。</li>
+<li>遍历所有 1 的 offset 效率低，适合统计而非枚举。</li>
+</ul>
+<h1 id="Redis-持久化"><a href="#Redis-持久化" class="headerlink" title="Redis 持久化"></a>Redis 持久化</h1><p>Redis提供两种持久化策略：RDB和AOF。RDB通过定时生成数据快照实现，适合快速恢复但可能丢失部分数据；AOF记录所有写操作命令，数据完整性更高但文件较大。此外，Redis支持混合持久化模式（AOF+RDB），结合两者优势实现高效备份与恢复。</p>
+<h1 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h1><p>缓存穿透是指查询的数据在缓存中不存在，而数据库中也没有该数据的数据，导致缓存穿透。缓存击穿是热点数据过期导致瞬间高并发请求压垮数据库；缓存雪崩是大量缓存同时失效引发数据库连锁崩溃。区别在于穿透因数据不存在，击穿因单点热点失效，雪崩因大规模缓存失效。</p>
+<h1 id="数据库缓存一致性"><a href="#数据库缓存一致性" class="headerlink" title="数据库缓存一致性"></a>数据库缓存一致性</h1><p>为确保Redis与数据库双写一致性，常用方法包括：先更新数据库再删缓存（Cache-Aside）、延迟双删（更新前后均删缓存并延迟二次删除）、基于消息队列异步同步、监听数据库binlog触发缓存更新，以及设置缓存过期时间兜底。需结合业务场景选择策略，配合重试机制确保最终一致性。</p>
+<h1 id="Angular-Commit-规范"><a href="#Angular-Commit-规范" class="headerlink" title="Angular Commit 规范"></a>Angular Commit 规范</h1><p>feat:     新功能<br>fix:      修复 bug<br>docs:     仅文档修改<br>style:    格式、空格、缩进、分号，不影响逻辑<br>refactor: 重构（既不新增功能，也不修 bug）<br>perf:     性能优化<br>test:     测试用例、测试代码修改<br>chore:    构建&#x2F;工具&#x2F;依赖&#x2F;杂项修改<br>build:    构建系统、打包配置修改<br>ci:       CI&#x2F;CD 配置、脚本修改<br>revert:   回滚某次提交<br>Redis Zset（有序集合）采用<strong>双编码动态切换</strong>实现：小数据用 <strong>listpack&#x2F;ziplist</strong> 省内存，大数据用 <strong>skiplist+dict</strong> 保性能。</p>
+<hr>
+<h1 id="Redis-Zset（有序集合）"><a href="#Redis-Zset（有序集合）" class="headerlink" title="Redis Zset（有序集合）"></a>Redis Zset（有序集合）</h1><hr>
+<h3 id="一、双编码策略（核心）"><a href="#一、双编码策略（核心）" class="headerlink" title="一、双编码策略（核心）"></a>一、双编码策略（核心）</h3><p>Redis 根据数据规模自动选择底层结构，<strong>不可逆升级</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>编码</th>
+<th>触发条件（默认）</th>
+<th>核心作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>listpack&#x2F;ziplist</strong></td>
+<td>元素数 &lt; 128 且 member 长度 &lt; 64 字节</td>
+<td>紧凑存储、省内存</td>
+</tr>
+<tr>
+<td><strong>skiplist+dict</strong></td>
+<td>不满足上述任一条件</td>
+<td>O(logN) 排序、范围查询、O(1) 查 score</td>
+</tr>
+</tbody></table>
+<h3 id="二、listpack-ziplist-编码（小数据）"><a href="#二、listpack-ziplist-编码（小数据）" class="headerlink" title="二、listpack&#x2F;ziplist 编码（小数据）"></a>二、listpack&#x2F;ziplist 编码（小数据）</h3><ul>
+<li><strong>结构</strong>：连续内存块，按 <strong>score 升序</strong> 存储 <code>[member, score]</code> 对。</li>
+<li><strong>优点</strong>：无指针开销、缓存友好、内存占用极低。</li>
+<li><strong>缺点</strong>：插入&#x2F;删除最坏 <strong>O(N)</strong>（连锁更新）。</li>
+<li><strong>适用</strong>：排行榜前N、小范围统计等场景。</li>
+</ul>
+<h3 id="三、skiplist-dict-编码（标准实现）"><a href="#三、skiplist-dict-编码（标准实现）" class="headerlink" title="三、skiplist+dict 编码（标准实现）"></a>三、skiplist+dict 编码（标准实现）</h3><h4 id="1-dict（哈希表）"><a href="#1-dict（哈希表）" class="headerlink" title="1. dict（哈希表）"></a>1. dict（哈希表）</h4><ul>
+<li><strong>结构</strong>：<code>member → score</code> 映射。</li>
+<li><strong>作用</strong>：<strong>O(1)</strong> 实现 <code>ZSCORE</code>、<code>ZREM</code> 等单点操作。</li>
+</ul>
+<h4 id="2-skiplist（跳表，核心）"><a href="#2-skiplist（跳表，核心）" class="headerlink" title="2. skiplist（跳表，核心）"></a>2. skiplist（跳表，核心）</h4><ul>
+<li><strong>结构</strong>：多层有序链表，节点包含：<ul>
+<li><code>score</code>（排序键）、<code>member</code>（值）</li>
+<li><code>backward</code>（反向指针，支持逆序遍历）</li>
+<li>多层 <code>forward</code>（正向指针）+ <code>span</code>（跨度，计算排名）</li>
+</ul>
+</li>
+<li><strong>层数</strong>：随机生成（最多 32 层），高层节点稀疏，加速跳跃查找。</li>
+<li><strong>时间复杂度</strong>：平均 <strong>O(logN)</strong> 增删改查、范围查询。</li>
+<li><strong>排序规则</strong>：先按 <code>score</code> 升序；<code>score</code> 相同按 <code>member</code> 字典序。</li>
+</ul>
+<h3 id="四、编码转换流程"><a href="#四、编码转换流程" class="headerlink" title="四、编码转换流程"></a>四、编码转换流程</h3><ol>
+<li>初始创建 Zset 时默认用 <strong>listpack&#x2F;ziplist</strong>。</li>
+<li>每次 <code>ZADD</code> 检查：若元素数 ≥128 或 member 长度 ≥64 字节，<strong>立即升级为 skiplist+dict</strong>。</li>
+<li>升级不可逆：删除元素后也不会降级回 listpack&#x2F;ziplist。</li>
+</ol>
+<h3 id="五、核心命令实现原理"><a href="#五、核心命令实现原理" class="headerlink" title="五、核心命令实现原理"></a>五、核心命令实现原理</h3><ul>
+<li><strong>ZADD</strong>：dict 查 member 存在性；skiplist 按 score 插入并更新索引。</li>
+<li><strong>ZRANGE</strong>：skiplist 从表头遍历，按层级快速定位范围。</li>
+<li><strong>ZSCORE</strong>：dict 直接 O(1) 查找。</li>
+<li><strong>ZRANK</strong>：skiplist 累加 <code>span</code> 计算排名。</li>
+</ul>
+<h3 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h3><p>Zset 用 <strong>listpack&#x2F;ziplist</strong> 优化小数据内存，用 <strong>skiplist+dict</strong> 保障大数据性能，兼顾内存与效率，是排行榜、延迟队列、范围统计的首选结构。</p>
+<h1 id="B-树节点大小与磁盘页大小匹配，减少磁盘-I-O-操作。"><a href="#B-树节点大小与磁盘页大小匹配，减少磁盘-I-O-操作。" class="headerlink" title="B+ 树节点大小与磁盘页大小匹配，减少磁盘 I&#x2F;O 操作。"></a>B+ 树节点大小与磁盘页大小匹配，减少磁盘 I&#x2F;O 操作。</h1><h1 id="监控并优化慢-SQL-可以通过启用慢查询日志、分析查询计划、优化索引和调整查询结构等方法实现。"><a href="#监控并优化慢-SQL-可以通过启用慢查询日志、分析查询计划、优化索引和调整查询结构等方法实现。" class="headerlink" title="监控并优化慢 SQL 可以通过启用慢查询日志、分析查询计划、优化索引和调整查询结构等方法实现。"></a>监控并优化慢 SQL 可以通过启用慢查询日志、分析查询计划、优化索引和调整查询结构等方法实现。</h1><h1 id="MySQL-提供四种事务隔离级别：读未提交（Read-Uncommitted）、读已提交（Read-Committed）、可重复读（Repeatable-Read，MySQL-默认）-和-串行化（Serializable），它们从低到高依次增强数据一致性，但并发性能递减。"><a href="#MySQL-提供四种事务隔离级别：读未提交（Read-Uncommitted）、读已提交（Read-Committed）、可重复读（Repeatable-Read，MySQL-默认）-和-串行化（Serializable），它们从低到高依次增强数据一致性，但并发性能递减。" class="headerlink" title="MySQL 提供四种事务隔离级别：读未提交（Read Uncommitted）、读已提交（Read Committed）、可重复读（Repeatable Read，MySQL 默认） 和 串行化（Serializable），它们从低到高依次增强数据一致性，但并发性能递减。"></a>MySQL 提供四种事务隔离级别：读未提交（Read Uncommitted）、读已提交（Read Committed）、可重复读（Repeatable Read，MySQL 默认） 和 串行化（Serializable），它们从低到高依次增强数据一致性，但并发性能递减。</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://pooiwoop-github-io.pages.dev">皖月清风</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://pooiwoop-github-io.pages.dev/2026/03/31/260331%E7%AC%94%E8%AE%B0/">https://pooiwoop-github-io.pages.dev/2026/03/31/260331%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://pooiwoop-github-io.pages.dev" target="_blank">皖月清风的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/2026/20260323-180427.012-6.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/03/30/260330%E7%AC%94%E8%AE%B0/" title="MySQL相关八股(260330笔记)"><img class="cover" src="/img/2026/20260323-180427.012-9.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">MySQL相关八股(260330笔记)</div></div><div class="info-2"><div class="info-item-1">Mysql存储引擎   主索引（聚簇索引）将数据存储在叶子节点，辅助索引存储指向主键的指针      # 什么是存储过程？ **存储过程（Stored Procedure）** 是**数据库中预先编译好、存储在服务器上的一组 SQL 语句集合**，你可以把它理解成**数据库里的“自定义函数/小程序”**。  它提前把复杂的 SQL 逻辑（增删改查、循环、判断、事务等）写好并保存，需要使用时，直接调用名字就能执行，不用重复写代码。  一、用最简单的比喻理解你要做一道菜：  普通 SQL：每次都把所有食材、步骤写一遍，一步步操作； 存储过程：把完整菜谱提前存在厨房，想吃的时候喊一声菜名，厨师直接按菜谱做好。   二、核心特点 存储在数据库服务器不是写在你的代码里，而是保存在 MySQL、Oracle、SQL Server 等数据库中。 预先编译第一次执行后就编译好了，后续调用速度更快。 可重复调用一次编写，无数次使用，程序、报表、脚本都能直接调用。 支持参数、逻辑判断、循环能实现复杂业务逻辑，不只是简单查询。 减少网络传输不用把一大段 SQL 发给服务器，只发一个调用指令。   三、...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">皖月清风</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/pooi-woop"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://space.bilibili.com/444943062" target="_blank" title="哔哩哔哩(皖月清风)"><i class="fab fa-bilibili" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://space.bilibili.com/2059784457" target="_blank" title="哔哩哔哩(Pooi)"><i class="fas fa-play" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://github.com/pooi-woop" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.xiaoheihe.cn/app/user/profile/89276699" target="_blank" title="小黑盒"><i class="fas fa-gamepad" style="color: #00a1d6;"></i></a><a class="social-icon" href="mailto:1960583030@qq.com" target="_blank" title="邮箱"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://steamcommunity.com/profiles/76561198984384066/" target="_blank" title="Steam"><i class="fab fa-steam" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://www.mfuns.net/member/32698" target="_blank" title="喵御宅"><i class="fas fa-cat" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://tieba.baidu.com/home/main?id=tb.1.3a262b89.IwcgVsMq1NwbQUKrazsfTg&amp;fr=userbar" target="_blank" title="百度贴吧"><i class="fas fa-comments" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=1359234587" target="_blank" title="网易云音乐"><i class="fas fa-music" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://www.douyin.com/user/MS4wLjABAAAAlK-w0K6GoHT6CzVvfomyhJZoal1ljhvlJieh4u1CsBGAdM2dW_Z3h6SaFK4IanSm?from_tab_name=main" target="_blank" title="抖音"><i class="fab fa-tiktok" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://leetcode.cn/u/woop-r/" target="_blank" title="LeetCode"><i class="fas fa-code" style="color: #00a1d6;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到清风的个人博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">1.</span> <span class="toc-text">线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">一、什么是线程池？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%9F%EF%BC%88%E6%A0%B8%E5%BF%83%E4%BD%9C%E7%94%A8%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">二、为什么要用线程池？（核心作用）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%A2%91%E7%B9%81%E5%88%9B%E5%BB%BA-%E9%94%80%E6%AF%81%E7%BA%BF%E7%A8%8B-%E2%86%92-%E9%9D%9E%E5%B8%B8%E8%80%97%E6%80%A7%E8%83%BD"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 频繁创建&#x2F;销毁线程 → 非常耗性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%97%A0%E9%99%90%E5%88%B6%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B-%E2%86%92-%E7%B3%BB%E7%BB%9F%E5%B4%A9%E6%BA%83"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 无限制创建线程 → 系统崩溃</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BA%BF%E7%A8%8B%E7%AE%A1%E7%90%86%E6%B7%B7%E4%B9%B1"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 线程管理混乱</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%A0%B8%E5%BF%83%E5%A5%BD%E5%A4%84%EF%BC%88%E6%80%BB%E7%BB%93%E7%89%88%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">三、线程池的核心好处（总结版）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%94%9F%E6%B4%BB%E7%B1%BB%E6%AF%94%EF%BC%88%E6%9C%80%E5%AE%B9%E6%98%93%E6%87%82%EF%BC%89"><span class="toc-number">1.4.</span> <span class="toc-text">四、生活类比（最容易懂）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Java-%E9%87%8C%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0%EF%BC%88%E7%AE%80%E5%8D%95%E6%8F%90%E4%B8%80%E4%B8%8B%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">五、Java 里最常见的线程池（简单提一下）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.1.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81Go-%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">2.</span> <span class="toc-text">五、Go 线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%94%A8-channel-%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E5%8D%8F%E7%A8%8B%E6%B1%A0"><span class="toc-number">2.1.</span> <span class="toc-text">1. 用 channel 实现简易协程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-number">2.1.1.</span> <span class="toc-text">效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9B%B4%E5%B8%B8%E7%94%A8%E7%9A%84%E7%AE%80%E5%8C%96%E7%89%88%EF%BC%9A%E7%94%A8-semaphore-%E9%A3%8E%E6%A0%BC%EF%BC%88%E6%8E%A7%E5%88%B6%E5%B9%B6%E5%8F%91%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">2. 更常用的简化版：用 semaphore 风格（控制并发）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88-Go-%E5%BE%88%E5%B0%91%E6%8F%90%E2%80%9C%E7%BA%BF%E7%A8%8B%E6%B1%A0%E2%80%9D%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">3. 为什么 Go 很少提“线程池”？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="toc-number">2.4.</span> <span class="toc-text">一句话总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HashMap"><span class="toc-number">3.</span> <span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis-Bitmaps%EF%BC%88%E4%BD%8D%E5%9B%BE%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">Redis Bitmaps（位图）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="toc-number">4.1.</span> <span class="toc-text">一、核心原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">4.2.</span> <span class="toc-text">二、常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C"><span class="toc-number">4.2.1.</span> <span class="toc-text">1. 基础操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%88BITOP%EF%BC%89"><span class="toc-number">4.2.2.</span> <span class="toc-text">2. 位运算（BITOP）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%BD%8D%E6%AE%B5%E6%93%8D%E4%BD%9C%EF%BC%88BITFIELD%EF%BC%89"><span class="toc-number">4.2.3.</span> <span class="toc-text">3. 位段操作（BITFIELD）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">4.3.</span> <span class="toc-text">三、典型应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%94%A8%E6%88%B7%E7%AD%BE%E5%88%B0-%E6%B4%BB%E8%B7%83%E7%BB%9F%E8%AE%A1"><span class="toc-number">4.3.1.</span> <span class="toc-text">1. 用户签到&#x2F;活跃统计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9D%83%E9%99%90-%E7%8A%B6%E6%80%81%E6%A0%87%E8%AE%B0"><span class="toc-number">4.3.2.</span> <span class="toc-text">2. 权限&#x2F;状态标记</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8E%BB%E9%87%8D-%E8%AE%A1%E6%95%B0"><span class="toc-number">4.3.3.</span> <span class="toc-text">3. 去重&#x2F;计数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%86%85%E5%AD%98%E8%AE%A1%E7%AE%97"><span class="toc-number">4.4.</span> <span class="toc-text">四、内存计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">4.5.</span> <span class="toc-text">五、注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis-%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">5.</span> <span class="toc-text">Redis 持久化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="toc-number">6.</span> <span class="toc-text">缓存穿透</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-number">7.</span> <span class="toc-text">数据库缓存一致性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Angular-Commit-%E8%A7%84%E8%8C%83"><span class="toc-number">8.</span> <span class="toc-text">Angular Commit 规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis-Zset%EF%BC%88%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">Redis Zset（有序集合）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8F%8C%E7%BC%96%E7%A0%81%E7%AD%96%E7%95%A5%EF%BC%88%E6%A0%B8%E5%BF%83%EF%BC%89"><span class="toc-number">9.1.</span> <span class="toc-text">一、双编码策略（核心）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81listpack-ziplist-%E7%BC%96%E7%A0%81%EF%BC%88%E5%B0%8F%E6%95%B0%E6%8D%AE%EF%BC%89"><span class="toc-number">9.2.</span> <span class="toc-text">二、listpack&#x2F;ziplist 编码（小数据）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81skiplist-dict-%E7%BC%96%E7%A0%81%EF%BC%88%E6%A0%87%E5%87%86%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="toc-number">9.3.</span> <span class="toc-text">三、skiplist+dict 编码（标准实现）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-dict%EF%BC%88%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%89"><span class="toc-number">9.3.1.</span> <span class="toc-text">1. dict（哈希表）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-skiplist%EF%BC%88%E8%B7%B3%E8%A1%A8%EF%BC%8C%E6%A0%B8%E5%BF%83%EF%BC%89"><span class="toc-number">9.3.2.</span> <span class="toc-text">2. skiplist（跳表，核心）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2%E6%B5%81%E7%A8%8B"><span class="toc-number">9.4.</span> <span class="toc-text">四、编码转换流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%A0%B8%E5%BF%83%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">9.5.</span> <span class="toc-text">五、核心命令实现原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">9.6.</span> <span class="toc-text">六、总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-%E6%A0%91%E8%8A%82%E7%82%B9%E5%A4%A7%E5%B0%8F%E4%B8%8E%E7%A3%81%E7%9B%98%E9%A1%B5%E5%A4%A7%E5%B0%8F%E5%8C%B9%E9%85%8D%EF%BC%8C%E5%87%8F%E5%B0%91%E7%A3%81%E7%9B%98-I-O-%E6%93%8D%E4%BD%9C%E3%80%82"><span class="toc-number">10.</span> <span class="toc-text">B+ 树节点大小与磁盘页大小匹配，减少磁盘 I&#x2F;O 操作。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%91%E6%8E%A7%E5%B9%B6%E4%BC%98%E5%8C%96%E6%85%A2-SQL-%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E5%90%AF%E7%94%A8%E6%85%A2%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97%E3%80%81%E5%88%86%E6%9E%90%E6%9F%A5%E8%AF%A2%E8%AE%A1%E5%88%92%E3%80%81%E4%BC%98%E5%8C%96%E7%B4%A2%E5%BC%95%E5%92%8C%E8%B0%83%E6%95%B4%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%84%E7%AD%89%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E3%80%82"><span class="toc-number">11.</span> <span class="toc-text">监控并优化慢 SQL 可以通过启用慢查询日志、分析查询计划、优化索引和调整查询结构等方法实现。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL-%E6%8F%90%E4%BE%9B%E5%9B%9B%E7%A7%8D%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%EF%BC%9A%E8%AF%BB%E6%9C%AA%E6%8F%90%E4%BA%A4%EF%BC%88Read-Uncommitted%EF%BC%89%E3%80%81%E8%AF%BB%E5%B7%B2%E6%8F%90%E4%BA%A4%EF%BC%88Read-Committed%EF%BC%89%E3%80%81%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB%EF%BC%88Repeatable-Read%EF%BC%8CMySQL-%E9%BB%98%E8%AE%A4%EF%BC%89-%E5%92%8C-%E4%B8%B2%E8%A1%8C%E5%8C%96%EF%BC%88Serializable%EF%BC%89%EF%BC%8C%E5%AE%83%E4%BB%AC%E4%BB%8E%E4%BD%8E%E5%88%B0%E9%AB%98%E4%BE%9D%E6%AC%A1%E5%A2%9E%E5%BC%BA%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%8C%E4%BD%86%E5%B9%B6%E5%8F%91%E6%80%A7%E8%83%BD%E9%80%92%E5%87%8F%E3%80%82"><span class="toc-number">12.</span> <span class="toc-text">MySQL 提供四种事务隔离级别：读未提交（Read Uncommitted）、读已提交（Read Committed）、可重复读（Repeatable Read，MySQL 默认） 和 串行化（Serializable），它们从低到高依次增强数据一致性，但并发性能递减。</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/31/260331%E7%AC%94%E8%AE%B0/" title="260331笔记"><img src="/img/2026/20260323-180427.012-6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="260331笔记"/></a><div class="content"><a class="title" href="/2026/03/31/260331%E7%AC%94%E8%AE%B0/" title="260331笔记">260331笔记</a><time datetime="2026-03-31T14:25:18.000Z" title="发表于 2026-03-31 22:25:18">2026-03-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/30/260330%E7%AC%94%E8%AE%B0/" title="MySQL相关八股(260330笔记)"><img src="/img/2026/20260323-180427.012-9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL相关八股(260330笔记)"/></a><div class="content"><a class="title" href="/2026/03/30/260330%E7%AC%94%E8%AE%B0/" title="MySQL相关八股(260330笔记)">MySQL相关八股(260330笔记)</a><time datetime="2026-03-30T13:21:12.000Z" title="发表于 2026-03-30 21:21:12">2026-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/28/260328/" title="260328"><img src="/img/2026/20260323-180427.012-11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="260328"/></a><div class="content"><a class="title" href="/2026/03/28/260328/" title="260328">260328</a><time datetime="2026-03-28T14:23:22.000Z" title="发表于 2026-03-28 22:23:22">2026-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/27/260327%E7%AC%94%E8%AE%B0/" title="260327笔记"><img src="/img/2026/20260323-180427.012-17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="260327笔记"/></a><div class="content"><a class="title" href="/2026/03/27/260327%E7%AC%94%E8%AE%B0/" title="260327笔记">260327笔记</a><time datetime="2026-03-27T13:09:42.000Z" title="发表于 2026-03-27 21:09:42">2026-03-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/26/260326%E7%AC%94%E8%AE%B0/" title="260326笔记"><img src="/img/2026/20260323-180427.012-1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="260326笔记"/></a><div class="content"><a class="title" href="/2026/03/26/260326%E7%AC%94%E8%AE%B0/" title="260326笔记">260326笔记</a><time datetime="2026-03-26T03:54:29.000Z" title="发表于 2026-03-26 11:54:29">2026-03-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/2026/20260323-180427.012-4.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 皖月清风</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = {"lang":"zh-CN","loading":"lazy","inputPosition":"top"}
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'pooi-woop/pooiwoop',
+      'data-repo-id': 'R_kgDORqG0YQ',
+      'data-category-id': 'DIC_kwDORqG0Yc4C4qyU',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div></body></html>
