@@ -1,0 +1,477 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发 | 皖月清风的个人博客</title><meta name="author" content="皖月清风"><meta name="copyright" content="皖月清风"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发本文由 dsV4f 阅读 commit 记录生成（覆盖 GitHub + Gitee 全部仓库）  本文归档 2026-07-27 ~ 2026-08-27 一个月的提交记录。其中 Gitee 上的 5 个仓库（后端&#x2F;前端&#x2F;部署&#x2F;聚合聊天&#x2F;AI Agen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发">
+<meta property="og:url" content="https://pooiwoop-github-io.pages.dev/2026/08/27/%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%9C%88%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="皖月清风的个人博客">
+<meta property="og:description" content="月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发本文由 dsV4f 阅读 commit 记录生成（覆盖 GitHub + Gitee 全部仓库）  本文归档 2026-07-27 ~ 2026-08-27 一个月的提交记录。其中 Gitee 上的 5 个仓库（后端&#x2F;前端&#x2F;部署&#x2F;聚合聊天&#x2F;AI Agen">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pooiwoop-github-io.pages.dev/img/2026/b0386fc60574a66e8d0dd0504e7226e93546970656344828.png">
+<meta property="article:published_time" content="2026-08-27T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-27T09:09:16.017Z">
+<meta property="article:author" content="皖月清风">
+<meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="RimWorld">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="安全">
+<meta property="article:tag" content="实习">
+<meta property="article:tag" content="工作总结">
+<meta property="article:tag" content="模组">
+<meta property="article:tag" content="视频生成">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pooiwoop-github-io.pages.dev/img/2026/b0386fc60574a66e8d0dd0504e7226e93546970656344828.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发",
+  "url": "https://pooiwoop-github-io.pages.dev/2026/08/27/%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%9C%88%E6%80%BB%E7%BB%93/",
+  "image": "https://pooiwoop-github-io.pages.dev/img/2026/b0386fc60574a66e8d0dd0504e7226e93546970656344828.png",
+  "datePublished": "2026-08-27T04:00:00.000Z",
+  "dateModified": "2026-08-27T09:09:16.017Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "皖月清风",
+      "url": "https://pooiwoop-github-io.pages.dev"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://pooiwoop-github-io.pages.dev/2026/08/27/%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%9C%88%E6%80%BB%E7%BB%93/index.html"><link rel="preconnect" href="//cdnjs.cloudflare.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdnjs.cloudflare.com/ajax/libs/egjs-infinitegrid/4.13.0/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><style>
+/* 首页标题样式 */
+.index-info .site-title {
+  font-size: 3rem;
+  opacity: 0.5;
+}
+</style>
+<meta name="generator" content="Hexo 8.1.2"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/2026/8c6271da33fe31a39853e3d1198341d23546594806860148.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">75</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/2026/b0386fc60574a66e8d0dd0504e7226e93546970656344828.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">皖月清风的个人博客</span></a><a class="nav-page-title" href="/"><span class="site-name">月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-27T04:00:00.000Z" title="发表于 2026-08-27 12:00:00">2026-08-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-27T09:09:16.017Z" title="更新于 2026-08-27 17:09:16">2026-08-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="月度总结-2026-07-27-08-27：AIGC-平台安全攻坚、聚合聊天与-RimWorld-模组爆发"><a href="#月度总结-2026-07-27-08-27：AIGC-平台安全攻坚、聚合聊天与-RimWorld-模组爆发" class="headerlink" title="月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发"></a>月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发</h1><p><mark><strong>本文由 dsV4f 阅读 commit 记录生成（覆盖 GitHub + Gitee 全部仓库）</strong></mark></p>
+<blockquote>
+<p>本文归档 <strong>2026-07-27 ~ 2026-08-27</strong> 一个月的提交记录。其中 Gitee 上的 5 个仓库（后端&#x2F;前端&#x2F;部署&#x2F;聚合聊天&#x2F;AI Agent，约 230+ commit）都是<strong>公司（寻雷科技）的跨境电商 AIGC 平台</strong>，属实习工作内容、不归个人所有；<strong>个人产物</strong>在 GitHub——包括<strong>博客更新</strong>与<strong>RimWorld 模组</strong>（8 个个人模组仓库）。需要说明：8&#x2F;26-27 的模组提交虽密集，但主要是个人的创意工坊发布工作。</p>
+</blockquote>
+<hr>
+<h2 id="目录（涉及仓库一览）"><a href="#目录（涉及仓库一览）" class="headerlink" title="目录（涉及仓库一览）"></a>目录（涉及仓库一览）</h2><table>
+<thead>
+<tr>
+<th>归属</th>
+<th>仓库</th>
+<th>类型</th>
+<th>本窗提交量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>公司</td>
+<td>e-commerce-backend</td>
+<td>平台后端（Go&#x2F;GoZero）</td>
+<td>~65</td>
+</tr>
+<tr>
+<td>公司</td>
+<td>e-commerce-frontend</td>
+<td>平台前端（React&#x2F;Taro）</td>
+<td>~49</td>
+</tr>
+<tr>
+<td>公司</td>
+<td>ecf-main-deploy</td>
+<td>前端部署镜像仓库</td>
+<td>~40</td>
+</tr>
+<tr>
+<td>公司</td>
+<td>back_tk_message_app</td>
+<td>聚合聊天（抖音客服）App</td>
+<td>~40</td>
+</tr>
+<tr>
+<td>公司</td>
+<td>xlagent</td>
+<td>AI Agent + 托管编排</td>
+<td>~31</td>
+</tr>
+<tr>
+<td>个人</td>
+<td>Cultural-Ritual-Limits</td>
+<td>RimWorld：文化招募限制</td>
+<td>6</td>
+</tr>
+<tr>
+<td>个人</td>
+<td>YuGongFillsMountain</td>
+<td>RimWorld：愚公移山·厚岩顶</td>
+<td>20</td>
+</tr>
+<tr>
+<td>个人</td>
+<td>JingWeiFillsSea</td>
+<td>RimWorld：精卫填海</td>
+<td>25</td>
+</tr>
+<tr>
+<td>个人</td>
+<td>PooiCustomBackground</td>
+<td>RimWorld：自定义主菜单背景</td>
+<td>24</td>
+</tr>
+<tr>
+<td>个人</td>
+<td>HeroBackgroundPack</td>
+<td>RimWorld：英雄背景包</td>
+<td>1(Init)</td>
+</tr>
+<tr>
+<td>个人</td>
+<td>Hay-From-Everywhere</td>
+<td>RimWorld：打草得干草</td>
+<td>6</td>
+</tr>
+<tr>
+<td>个人</td>
+<td>Pooi-s-Mountain-Moving</td>
+<td>RimWorld：愚公移山（移厚岩顶）</td>
+<td>10</td>
+</tr>
+<tr>
+<td>个人</td>
+<td>Never-Blow-Yourself-Up</td>
+<td>RimWorld：手雷友安检查</td>
+<td>4</td>
+</tr>
+<tr>
+<td>个人</td>
+<td>blog-source &#x2F; pooiwoop</td>
+<td>博客源码 &amp; 部署</td>
+<td>若干</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="一、AIGC-平台后端（e-commerce-backend）——这个月的安全重头戏"><a href="#一、AIGC-平台后端（e-commerce-backend）——这个月的安全重头戏" class="headerlink" title="一、AIGC 平台后端（e-commerce-backend）——这个月的安全重头戏"></a>一、AIGC 平台后端（e-commerce-backend）——这个月的安全重头戏</h2><p>如果说上月学会”防御性编程”，这月就是把<strong>网关安全体系</strong>彻底立起来。commit 密度最高的都在这里。</p>
+<h3 id="1-1-接入与鉴权（OAuth-HMAC-中央身份）"><a href="#1-1-接入与鉴权（OAuth-HMAC-中央身份）" class="headerlink" title="1.1 接入与鉴权（OAuth &#x2F; HMAC &#x2F; 中央身份）"></a>1.1 接入与鉴权（OAuth &#x2F; HMAC &#x2F; 中央身份）</h3><ul>
+<li><strong>OAuth2 AJAX 授权</strong>：授权流改走 AJAX，JWT 增昵称字段，移除 URL token 透传</li>
+<li><strong>OAuth 内置兜底 + originFromRequest</strong>：按来源（9011&#x2F;9012&#x2F;9014 多入口）回跳正确登录出口</li>
+<li><strong>脚本通道 HMAC 鉴权</strong>：脚本调网关先做 HMAC 签名校验（核心 + 配置开关 + 说明文档）</li>
+<li><strong>接入中央身份服务边界</strong>：OAuth2 授权码携带权威身份 claim，走 <strong>fail-closed</strong>（校验不过即拒），并跨环境 rollout seam（默认禁用灰度过渡）</li>
+</ul>
+<h3 id="1-2-风控与限流"><a href="#1-2-风控与限流" class="headerlink" title="1.2 风控与限流"></a>1.2 风控与限流</h3><ul>
+<li><strong>API 分级限流</strong>：Redis 固定窗口，从”一刀切”升级为分级，附说明文档</li>
+<li><strong>风险验证码</strong>：L3 &#x2F; <code>captcha_on_risk</code> 超限自动触发人机验证，补单测与 preflight</li>
+<li><strong>Web 请求体 AES-256-GCM 加密</strong>：网关解密的端到端链路</li>
+</ul>
+<h3 id="1-3-权限与正确性打磨"><a href="#1-3-权限与正确性打磨" class="headerlink" title="1.3 权限与正确性打磨"></a>1.3 权限与正确性打磨</h3><ul>
+<li><strong>EC 租户设备隔离</strong>：修复跨租户越权查询，收敛敏感日志</li>
+<li><strong>菜单权限同步</strong>：恢复 <code>permissionHandling</code>，沉淀 <code>code:-2</code> 权限根因手册</li>
+<li><strong>keyword_topic_person</strong>（话题获客）：修复 PostgreSQL 数组参数、改用 <strong>SQL 聚合替代内存计算</strong>防大数据量内存溢出、优化 <code>target/list</code> 查询、改为用户私有模式</li>
+<li><strong>抖音统计</strong>：粉丝&#x2F;点赞&#x2F;作品当日未上报时回退显示最近非空值，<strong>避免伪 0 值误导</strong></li>
+<li>性能与交付：<code>/file/download</code> 支持 <code>stream=1</code> 流式播放（绕开 OSS 预签名过期）、<code>RPC Success</code> 支持 <code>map[string]string</code>、新增 <code>resource_capability</code> 资源评估服务</li>
+</ul>
+<h3 id="1-4-部署与排障"><a href="#1-4-部署与排障" class="headerlink" title="1.4 部署与排障"></a>1.4 部署与排障</h3><ul>
+<li><strong>8&#x2F;15 部署 SOP</strong>：AI 本体镜像重建 + 9012 前端 + pro1 红绿部署、EC.Host 迁 8098 云控（A 本体+9012 完成，C 块挂起）</li>
+<li><strong>TikTok 出码 504</strong>：禁 keep-alive + 失败重试修复</li>
+<li>每周排障笔记补录：9011&#x2F;9014 权限、RPC 超时蓝绿、AutoDL 视频克隆 GPU、promotion 冷启动等</li>
+</ul>
+<hr>
+<h2 id="二、AIGC-平台前端（e-commerce-frontend-ecf-main-deploy）"><a href="#二、AIGC-平台前端（e-commerce-frontend-ecf-main-deploy）" class="headerlink" title="二、AIGC 平台前端（e-commerce-frontend + ecf-main-deploy）"></a>二、AIGC 平台前端（e-commerce-frontend + ecf-main-deploy）</h2><p>两块仓库内容同源（ecf-main-deploy 是前端部署镜像），合起来看：</p>
+<h3 id="2-1-托管系统（养号-获客-视频发布）——从无到有"><a href="#2-1-托管系统（养号-获客-视频发布）——从无到有" class="headerlink" title="2.1 托管系统（养号&#x2F;获客&#x2F;视频发布）——从无到有"></a>2.1 托管系统（养号&#x2F;获客&#x2F;视频发布）——从无到有</h3><ul>
+<li><strong>发布前人工审核</strong>：弹窗展示视频&#x2F;账号&#x2F;提示词，一键通过</li>
+<li><strong>今日执行记录分页 + 审核通知</strong>：短信（恢复可用）&#x2F;邮箱（新增）&#x2F;飞书（暂挂）</li>
+<li><strong>托管浮标 &amp; 每日配置入口</strong>：聊天页右侧高亮浮标，待审核数量角标</li>
+<li>前端健壮性：浮标限高从 <code>max-h-screen</code>→<code>max-h-full</code>→<code>fixed+vh</code> 连续三次调优防溢出；<code>TimePicker</code> 修复；开启按钮 loading 防重复点击</li>
+</ul>
+<h3 id="2-2-流式体验升级"><a href="#2-2-流式体验升级" class="headerlink" title="2.2 流式体验升级"></a>2.2 流式体验升级</h3><ul>
+<li><strong>流式思维链实时渲染</strong>：思考&#x2F;调度链肉眼可见，渲染完自动收起</li>
+<li><strong>任务路径实时步骤 + 步骤自动推进</strong>：done 后自动收尾</li>
+<li>会话列表<strong>过期标记 + 推理过程展示</strong></li>
+<li>会话侧栏折叠、输入框齿轮设置抽屉</li>
+</ul>
+<h3 id="2-3-其他亮点"><a href="#2-3-其他亮点" class="headerlink" title="2.3 其他亮点"></a>2.3 其他亮点</h3><ul>
+<li><code>upstream-video</code> 模块<strong>迁移进 <code>GenerateVideoV2Drawer</code></strong>，删旧模块</li>
+<li>商品画像参考视频库集成、拖图新增加商品</li>
+<li>回退 <strong>React 19 → 18.3.1</strong> 修复 Arco Design 兼容问题</li>
+<li>新增泰语&#x2F;马来语&#x2F;菲律宾语&#x2F;越南语输出、AI 润色默认英文 + 语言快捷切换</li>
+<li>OAuth 授权页加固（redirect_uri 白名单、非 JSON 回退拒绝、Bearer 构造）</li>
+</ul>
+<hr>
+<h2 id="三、聚合聊天-App（back-tk-message-app）——公司平台的一环"><a href="#三、聚合聊天-App（back-tk-message-app）——公司平台的一环" class="headerlink" title="三、聚合聊天 App（back_tk_message_app）——公司平台的一环"></a>三、聚合聊天 App（back_tk_message_app）——公司平台的一环</h2><p>这个仓库本月非常活跃，是抖音客服&#x2F;聚合聊天 App（公司 AIGC 平台能力之一）：</p>
+<ul>
+<li><strong>协议扫码优先 + 浏览器 QR 兜底</strong>：内置 hot 协议扫码包，官方 PNG 收 cookie</li>
+<li><strong>OAuth2 多平台身份会话</strong>：9011+9012 同一人多账号合并、不同人顶掉；state 事务持久化 + 加密 PKCE</li>
+<li><strong>QR 登录并发配额</strong>：满并发排队而非立即 503，任务认领精化</li>
+<li><strong>脚本任务队列加固</strong>：租约续期、去消费即完成、僵尸守卫、保留未确认消息</li>
+<li><strong>未读持久化、多账号资料&#x2F;设备编辑、陌生人会话直发</strong></li>
+<li>线上部署健康验证与阶段 0-6 操作手册沉淀</li>
+</ul>
+<hr>
+<h2 id="四、AI-Agent（xlagent）——托管与知识库中枢"><a href="#四、AI-Agent（xlagent）——托管与知识库中枢" class="headerlink" title="四、AI Agent（xlagent）——托管与知识库中枢"></a>四、AI Agent（xlagent）——托管与知识库中枢</h2><p>这是前端的”大脑”，本月长成不少：</p>
+<ul>
+<li><strong>知识库混合检索</strong>：PG 倒排 + Qdrant 稠密向量 RRF 融合，接入对话上下文</li>
+<li><strong>托管编排强化</strong>：养号&#x2F;获客脚本「守卫消费判完成」根治、僵尸状态自动兜底、手动「立即执行」强制入队、发布前审核邮件一键通过&#x2F;驳回</li>
+<li><strong>对话能力扩展</strong>：创建项目 NL、托管配置对话编辑、身份&#x2F;知情记忆、用户上下文分组展示、clarify 误判守卫</li>
+<li><strong>自然语言调用 8098 云控</strong> + 记忆压缩 + 对话历史 8→20、280→800 runes、SSE 流式思维链与长文 30s 超时根治</li>
+</ul>
+<hr>
+<h2 id="五、GitHub-副业：RimWorld-模组爆发（本月隐藏主线）"><a href="#五、GitHub-副业：RimWorld-模组爆发（本月隐藏主线）" class="headerlink" title="五、GitHub 副业：RimWorld 模组爆发（本月隐藏主线）"></a>五、GitHub 副业：RimWorld 模组爆发（本月隐藏主线）</h2><p>工作之余在 RimWorld 模组上投入不小，<strong>8 月 7 日到 8 月 27 日堪称”模组发布季”</strong>，尤其是 8&#x2F;26-27 一次性落地了多个仓库：</p>
+<h3 id="5-1-模组全家桶（均在创意工坊发布）"><a href="#5-1-模组全家桶（均在创意工坊发布）" class="headerlink" title="5.1 模组全家桶（均在创意工坊发布）"></a>5.1 模组全家桶（均在创意工坊发布）</h3><ul>
+<li><strong>愚公移山（YuGongFillsMountain &#x2F; Pooi-s-Mountain-Moving）</strong>：以极高工作量移除&#x2F;建造厚岩顶，Designator&#x2F;WorkGiver&#x2F;JobDriver + MapComponent 进度持久化 + 设置</li>
+<li><strong>精卫填海（JingWeiFillsSea）</strong>：填海造陆，WorkGiver&#x2F;Comp 双路线 + 中英本地化</li>
+<li><strong>文化招募限制（Cultural-Ritual-Limits）</strong>：控制角色加入的人力限制，Harmony 补丁 + 调试诊断补丁</li>
+<li><strong>自定义背景（PooiCustomBackground）</strong>：主菜单背景管理器 + 文件浏览器对话框</li>
+<li><strong>HeroBackgroundPack &#x2F; 英雄背景包</strong>：批量英雄背景图</li>
+<li><strong>Hay-From-Everywhere</strong>：打草哈喽 Farm 草 → 干草</li>
+<li><strong>Never-Blow-Yourself-Up</strong>：手雷&#x2F;燃烧瓶自动开火前<strong>友军安全检查</strong></li>
+</ul>
+<blockquote>
+<p>值得一提：这批模组都配了<strong>中英本地化</strong>、<strong>Preview 预览图</strong>、<strong>Steam Workshop 发布 ID</strong>，并自动 <code>Compile</code> 输出 <code>Assemblies/*.dll</code>。有些还写了配套的<strong>新手教程（基础篇 01-08 + 进阶篇 09-13）</strong>——把踩过的坑沉淀给了后来人。</p>
+</blockquote>
+<h3 id="5-2-心得体会"><a href="#5-2-心得体会" class="headerlink" title="5.2 心得体会"></a>5.2 心得体会</h3><p>从手雷检查到逐个模组发布，这个月把 <strong>Harmony 补丁、Def XML、WorkGiver&#x2F;Designator、JobDriver、本地化、创意工坊发布</strong> 这套 RimWorld 开发全流程完整走了一遍，堪称主语言之外的”第二技能树”。</p>
+<hr>
+<h2 id="六、博客"><a href="#六、博客" class="headerlink" title="六、博客"></a>六、博客</h2><ul>
+<li>新发重磅文章 <strong>《Go 底层相关八股》</strong>（7&#x2F;30）：goroutine 超时管理、空接口&#x2F;泛型&#x2F;类型断言、接口设计、panic&#x2F;recover、gRPC 选型、一致性哈希</li>
+<li>配合 B 站&#x2F;术力口分区找图，更新了多篇图文配图（8&#x2F;05、8&#x2F;11~8&#x2F;20）</li>
+<li><code>pooiwoop.io</code> 部署站点 7&#x2F;30 更新</li>
+</ul>
+<hr>
+<h2 id="七、这个月-vs-上个月"><a href="#七、这个月-vs-上个月" class="headerlink" title="七、这个月 vs 上个月"></a>七、这个月 vs 上个月</h2><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>上个月</th>
+<th>这个月</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主题</td>
+<td>从 0 接入 AIGC 视频生成</td>
+<td>安全&#x2F;鉴权主权、托管系统、聚合聊天、模组发布</td>
+</tr>
+<tr>
+<td>主阵地</td>
+<td>1 个项目（公司）</td>
+<td>5 个 Gitee 仓库（公司）+ 7 个 GitHub 个人模组仓库</td>
+</tr>
+<tr>
+<td>关键词</td>
+<td>流式视频、计费、OSS</td>
+<td>HMAC&#x2F;OAuth&#x2F;AES、SQL 聚合优化、QR 登录、RimWorld CI</td>
+</tr>
+<tr>
+<td>风格</td>
+<td>做出功能</td>
+<td>做对、做稳、做安全 + 跨领域开源</td>
+</tr>
+</tbody></table>
+<p>上月是”做出功能”，这月明显转向<strong>工程化打磨、越权修复、性能与正确性</strong>，并发掘了 RimWorld 模组这个全新的开源副业赛道。</p>
+<hr>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>第二个实习月不再只是”写代码”，而是大量精力花在<strong>鉴权、越权、限流、加密、部署排障</strong>这类”看不到但出事就要命”的事上，也第一次强烈体会到<strong>降级决策</strong>（React 19 → 18.3.1）的务实。</p>
+<p>副业方面，RimWorld 模组超出预期地高产——从初期的单发模组到 8 月底的整批发布。这种”主业修内功、副业练新招”的节奏，是这个月最好的状态。</p>
+<p>下个月目标：</p>
+<ul>
+<li>把 <code>keyword_topic_person</code> 的性能优化沉淀成可复用查询规范</li>
+<li>托管系统打磨出更完整的”审核闭环”产品能力</li>
+<li>给 RimWorld 模组完善 CI&#x2F;一键打包发布流程</li>
+</ul>
+<p>继续加油。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://pooiwoop-github-io.pages.dev">皖月清风</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://pooiwoop-github-io.pages.dev/2026/08/27/%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%9C%88%E6%80%BB%E7%BB%93/">https://pooiwoop-github-io.pages.dev/2026/08/27/%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%9C%88%E6%80%BB%E7%BB%93/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://pooiwoop-github-io.pages.dev" target="_blank">皖月清风的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Go/">Go</a><a class="post-meta__tags" href="/tags/%E5%AE%9E%E4%B9%A0/">实习</a><a class="post-meta__tags" href="/tags/AIGC/">AIGC</a><a class="post-meta__tags" href="/tags/%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90/">视频生成</a><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><a class="post-meta__tags" href="/tags/%E5%AE%89%E5%85%A8/">安全</a><a class="post-meta__tags" href="/tags/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/">工作总结</a><a class="post-meta__tags" href="/tags/RimWorld/">RimWorld</a><a class="post-meta__tags" href="/tags/%E6%A8%A1%E7%BB%84/">模组</a></div><div class="post-share"><div class="social-share" data-image="/img/2026/b0386fc60574a66e8d0dd0504e7226e93546970656344828.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/07/30/20260730/" title="Go底层相关八股"><img class="cover" src="/img/2026/8e31f4432059b0ffcf7c535acc8ddc00531559881.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Go底层相关八股</div></div><div class="info-2"><div class="info-item-1">Go如何实现“等待 100 个 goroutine 完成，但最多等待 3 秒“context取消1234567891011121314151617181920212223242526272829303132333435363738package mainimport (	&quot;context&quot;	&quot;fmt&quot;	&quot;sync&quot;	&quot;time&quot;)func main() &#123;	var wg sync.WaitGroup	// 创建一个 3 秒后自动取消的 Context	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)	defer cancel() // 确保在 main 退出时释放资源	for i := 0; i &lt; 100; i++ &#123;		wg.Add(1)		go func(id int) &#123;			defer wg.Done()			// 模拟工作：随机耗时 1-5 秒			workTi...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/07/25/%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%9C%88%E6%80%BB%E7%BB%93/" title="实习第一个月总结：从校园到企业的AIGC实战之旅"><img class="cover" src="/img/2026/6e4bd4a875bbd00c197446f574df44203546594806860148.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-07-25</div><div class="info-item-2">实习第一个月总结：从校园到企业的AIGC实战之旅</div></div><div class="info-2"><div class="info-item-1">实习第一个月总结：从校园到企业的AIGC实战之旅本文章由AI阅读commit记录生成，效果感觉一般，意淫了不少我的想法XD 2026年6月25日到7月25日，我在厦门寻雷科技完成了第一个月的实习。这一个月里，我深度参与了一个电商AIGC平台的开发，同时接触了前端（React&#x2F;Taro）和后端（Go&#x2F;GoZero），算是真正从”写demo”进入了”做产品”的阶段。 项目概览实习所在的项目是一个跨境电商AIGC内容生产平台，核心是用AI帮助商家生成营销视频、管理素材。技术栈方面：  后端：Go + GoZero 微服务架构，包含 gateway &#x2F; platform &#x2F; aggregation &#x2F; material 等多个服务 前端：Monorepo 架构（pnpm workspace），PC端用 React + Vite，H5用 Taro，App端用 Capacitor AI能力：接入寻雷Bernini、DeepSeek等多个AI服务商  第一个月我提交了大约 40+ 个 commit，覆盖前端和后端，主要集中在以下几个方向。   ...</div></div></div></a><a class="pagination-related" href="/2026/06/05/260605/" title="Go网页抓取，爬虫相关复习"><img class="cover" src="/img/2026/20260323-180427.012-12.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-05</div><div class="info-item-2">Go网页抓取，爬虫相关复习</div></div><div class="info-2"><div class="info-item-1">获取网页内容1234567891011121314151617181920212223242526272829303132package mainimport (	&quot;fmt&quot;	&quot;io&quot;	&quot;net/http&quot;)func main() &#123;	// 目标网址	url := &quot;https://httpbin.org/get&quot;	// 发送 GET 请求	resp, err := http.Get(url)	if err != nil &#123;		fmt.Println(&quot;请求失败:&quot;, err)		return	&#125;	// 必须关闭响应体，防止内存泄漏	defer resp.Body.Close()	// 读取响应内容	body, err := io.ReadAll(resp.Body)	if err != nil &#123;		fmt.Println(&quot;读取内容失败:&quot;, err)		return	&#125;	// 输出网页内容	fmt.Prin...</div></div></div></a><a class="pagination-related" href="/2026/05/28/20260528/" title="Go底层八股笔记"><img class="cover" src="/img/2026/09a50b243bc714ed50cb35aa3e495a98478921174.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-05-28</div><div class="info-item-2">Go底层八股笔记</div></div><div class="info-2"><div class="info-item-1">Go 原生 map 不是并发安全的，多协程同时读写会panic: concurrent map read&#x2F;write。 解决方法 互斥锁1234567891011121314151617181920212223242526package mainimport &quot;sync&quot;func main() &#123;	var mu sync.Mutex	m := make(map[int]int)	go func() &#123;		for i := 0; i &lt; 10000; i++ &#123;			mu.Lock()   // 加锁			m[i] = i			mu.Unlock() // 解锁		&#125;	&#125;()	go func() &#123;		for i := 0; i &lt; 10000; i++ &#123;			mu.Lock()			_ = m[i]			mu.Unlock()		&#125;	&#125;()	select &#123;&#125;&#125; 读写锁1234567891011var mu sync....</div></div></div></a><a class="pagination-related" href="/2026/06/14/20260614/" title="LRU？SingleFlight？Flink？Spark？20260614杂八股"><img class="cover" src="/img/2026/420c9b9f08de31d166af08e1ac974daf3546594806860148.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-14</div><div class="info-item-2">LRU？SingleFlight？Flink？Spark？20260614杂八股</div></div><div class="info-2"><div class="info-item-1">filebeat是beats的一个组件。GMP相关同一时刻：一个 M 只能绑定一个 P，一个 P 也只能被一个 M 使用；生命周期上：M 和 P 不是永久一对一绑定，会因阻塞、抢占、空闲切换动态解绑、重新配对；核心约束：M 执行 G 的前提是临时持有 P，而非终身绑定。 slice 不是线程安全的多个 goroutine 并发读写同一个 slice，一定会出现数据竞争、结果异常、panic。这首歌好听，推荐一下啊【ナースロボ＿タイプT】あの会話の覚書【漣音】 redis 排行榜应该用哪个数据结构ZSet【有序集合】，天然适配排序、分值、去重、分页、排名查询，是 Redis 做榜单的最优解。元素唯一：成员（member）不可重复，天然防重复上榜按分值排序：根据 score 自动升 &#x2F; 降序排列，对应分数、热度、时间高效排名查询：查询名次、区间分页、查某人排名时间复杂度极低支持分数更新：直接修改 score，集合自动重排 1234567891011121314151617# 1. 添加/更新成员分数（上榜/加分）ZADD rank 99 &quot;user1&quot; ...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">皖月清风</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">75</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/pooi-woop"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://space.bilibili.com/444943062" target="_blank" title="哔哩哔哩(皖月清风)"><i class="fab fa-bilibili" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://space.bilibili.com/2059784457" target="_blank" title="哔哩哔哩(Pooi)"><i class="fas fa-play" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://github.com/pooi-woop" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.xiaoheihe.cn/app/user/profile/89276699" target="_blank" title="小黑盒"><i class="fas fa-gamepad" style="color: #00a1d6;"></i></a><a class="social-icon" href="mailto:1960583030@qq.com" target="_blank" title="邮箱"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://steamcommunity.com/profiles/76561198984384066/" target="_blank" title="Steam"><i class="fab fa-steam" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://www.mfuns.net/member/32698" target="_blank" title="喵御宅"><i class="fas fa-cat" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://tieba.baidu.com/home/main?id=tb.1.3a262b89.IwcgVsMq1NwbQUKrazsfTg&amp;fr=userbar" target="_blank" title="百度贴吧"><i class="fas fa-comments" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=1359234587" target="_blank" title="网易云音乐"><i class="fas fa-music" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://www.douyin.com/user/MS4wLjABAAAAlK-w0K6GoHT6CzVvfomyhJZoal1ljhvlJieh4u1CsBGAdM2dW_Z3h6SaFK4IanSm?from_tab_name=main" target="_blank" title="抖音"><i class="fab fa-tiktok" style="color: #00a1d6;"></i></a><a class="social-icon" href="https://leetcode.cn/u/woop-r/" target="_blank" title="LeetCode"><i class="fas fa-code" style="color: #00a1d6;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到清风的个人博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%88%E5%BA%A6%E6%80%BB%E7%BB%93-2026-07-27-08-27%EF%BC%9AAIGC-%E5%B9%B3%E5%8F%B0%E5%AE%89%E5%85%A8%E6%94%BB%E5%9D%9A%E3%80%81%E8%81%9A%E5%90%88%E8%81%8A%E5%A4%A9%E4%B8%8E-RimWorld-%E6%A8%A1%E7%BB%84%E7%88%86%E5%8F%91"><span class="toc-number">1.</span> <span class="toc-text">月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%EF%BC%88%E6%B6%89%E5%8F%8A%E4%BB%93%E5%BA%93%E4%B8%80%E8%A7%88%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">目录（涉及仓库一览）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81AIGC-%E5%B9%B3%E5%8F%B0%E5%90%8E%E7%AB%AF%EF%BC%88e-commerce-backend%EF%BC%89%E2%80%94%E2%80%94%E8%BF%99%E4%B8%AA%E6%9C%88%E7%9A%84%E5%AE%89%E5%85%A8%E9%87%8D%E5%A4%B4%E6%88%8F"><span class="toc-number">1.2.</span> <span class="toc-text">一、AIGC 平台后端（e-commerce-backend）——这个月的安全重头戏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%8E%A5%E5%85%A5%E4%B8%8E%E9%89%B4%E6%9D%83%EF%BC%88OAuth-HMAC-%E4%B8%AD%E5%A4%AE%E8%BA%AB%E4%BB%BD%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.1 接入与鉴权（OAuth &#x2F; HMAC &#x2F; 中央身份）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E9%A3%8E%E6%8E%A7%E4%B8%8E%E9%99%90%E6%B5%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2 风控与限流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%9D%83%E9%99%90%E4%B8%8E%E6%AD%A3%E7%A1%AE%E6%80%A7%E6%89%93%E7%A3%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.3 权限与正确性打磨</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%8E%92%E9%9A%9C"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.4 部署与排障</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81AIGC-%E5%B9%B3%E5%8F%B0%E5%89%8D%E7%AB%AF%EF%BC%88e-commerce-frontend-ecf-main-deploy%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">二、AIGC 平台前端（e-commerce-frontend + ecf-main-deploy）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%89%98%E7%AE%A1%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%85%BB%E5%8F%B7-%E8%8E%B7%E5%AE%A2-%E8%A7%86%E9%A2%91%E5%8F%91%E5%B8%83%EF%BC%89%E2%80%94%E2%80%94%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.1 托管系统（养号&#x2F;获客&#x2F;视频发布）——从无到有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%B5%81%E5%BC%8F%E4%BD%93%E9%AA%8C%E5%8D%87%E7%BA%A7"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.2 流式体验升级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%85%B6%E4%BB%96%E4%BA%AE%E7%82%B9"><span class="toc-number">1.3.3.</span> <span class="toc-text">2.3 其他亮点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%81%9A%E5%90%88%E8%81%8A%E5%A4%A9-App%EF%BC%88back-tk-message-app%EF%BC%89%E2%80%94%E2%80%94%E5%85%AC%E5%8F%B8%E5%B9%B3%E5%8F%B0%E7%9A%84%E4%B8%80%E7%8E%AF"><span class="toc-number">1.4.</span> <span class="toc-text">三、聚合聊天 App（back_tk_message_app）——公司平台的一环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81AI-Agent%EF%BC%88xlagent%EF%BC%89%E2%80%94%E2%80%94%E6%89%98%E7%AE%A1%E4%B8%8E%E7%9F%A5%E8%AF%86%E5%BA%93%E4%B8%AD%E6%9E%A2"><span class="toc-number">1.5.</span> <span class="toc-text">四、AI Agent（xlagent）——托管与知识库中枢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81GitHub-%E5%89%AF%E4%B8%9A%EF%BC%9ARimWorld-%E6%A8%A1%E7%BB%84%E7%88%86%E5%8F%91%EF%BC%88%E6%9C%AC%E6%9C%88%E9%9A%90%E8%97%8F%E4%B8%BB%E7%BA%BF%EF%BC%89"><span class="toc-number">1.6.</span> <span class="toc-text">五、GitHub 副业：RimWorld 模组爆发（本月隐藏主线）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%A8%A1%E7%BB%84%E5%85%A8%E5%AE%B6%E6%A1%B6%EF%BC%88%E5%9D%87%E5%9C%A8%E5%88%9B%E6%84%8F%E5%B7%A5%E5%9D%8A%E5%8F%91%E5%B8%83%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">5.1 模组全家桶（均在创意工坊发布）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="toc-number">1.6.2.</span> <span class="toc-text">5.2 心得体会</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%8D%9A%E5%AE%A2"><span class="toc-number">1.7.</span> <span class="toc-text">六、博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E8%BF%99%E4%B8%AA%E6%9C%88-vs-%E4%B8%8A%E4%B8%AA%E6%9C%88"><span class="toc-number">1.8.</span> <span class="toc-text">七、这个月 vs 上个月</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">1.9.</span> <span class="toc-text">写在最后</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/27/%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%9C%88%E6%80%BB%E7%BB%93/" title="月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发"><img src="/img/2026/b0386fc60574a66e8d0dd0504e7226e93546970656344828.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发"/></a><div class="content"><a class="title" href="/2026/08/27/%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%9C%88%E6%80%BB%E7%BB%93/" title="月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发">月度总结 2026-07-27~08-27：AIGC 平台安全攻坚、聚合聊天与 RimWorld 模组爆发</a><time datetime="2026-08-27T04:00:00.000Z" title="发表于 2026-08-27 12:00:00">2026-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/30/20260730/" title="Go底层相关八股"><img src="/img/2026/8e31f4432059b0ffcf7c535acc8ddc00531559881.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Go底层相关八股"/></a><div class="content"><a class="title" href="/2026/07/30/20260730/" title="Go底层相关八股">Go底层相关八股</a><time datetime="2026-07-30T01:11:06.000Z" title="发表于 2026-07-30 09:11:06">2026-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/25/%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%9C%88%E6%80%BB%E7%BB%93/" title="实习第一个月总结：从校园到企业的AIGC实战之旅"><img src="/img/2026/6e4bd4a875bbd00c197446f574df44203546594806860148.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实习第一个月总结：从校园到企业的AIGC实战之旅"/></a><div class="content"><a class="title" href="/2026/07/25/%E5%AE%9E%E4%B9%A0%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%9C%88%E6%80%BB%E7%BB%93/" title="实习第一个月总结：从校园到企业的AIGC实战之旅">实习第一个月总结：从校园到企业的AIGC实战之旅</a><time datetime="2026-07-25T01:22:12.000Z" title="发表于 2026-07-25 09:22:12">2026-07-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/01/20260701/" title="笛卡尔积与自然连接"><img src="/img/2026/27d36227739fabe6e6387a94ee519176531559881.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笛卡尔积与自然连接"/></a><div class="content"><a class="title" href="/2026/07/01/20260701/" title="笛卡尔积与自然连接">笛卡尔积与自然连接</a><time datetime="2026-07-01T00:56:48.000Z" title="发表于 2026-07-01 08:56:48">2026-07-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/29/20260629/" title="数据库相关概念"><img src="/img/2026/0756406d3c21d5ec130158345a442e931964762210.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据库相关概念"/></a><div class="content"><a class="title" href="/2026/06/29/20260629/" title="数据库相关概念">数据库相关概念</a><time datetime="2026-06-29T06:37:55.000Z" title="发表于 2026-06-29 14:37:55">2026-06-29</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/2026/20260323-180427.012-4.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 皖月清风</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = {"lang":"zh-CN","loading":"lazy","inputPosition":"top"}
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'pooi-woop/pooiwoop',
+      'data-repo-id': 'R_kgDORqG0YQ',
+      'data-category-id': 'DIC_kwDORqG0Yc4C4qyU',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div></body></html>
